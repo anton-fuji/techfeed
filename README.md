@@ -1,5 +1,14 @@
 #  👽 Tech Feed
 ## Usage
+### Install
+```bash
+go install github.com/anton-fuji/techfeed@latest
+```
+or 
+```bash
+git clone git@github.com:anton-fuji/techfeed.git
+```
+
 ### Step.1 Feed設定
 - `config/feed-setup.yaml`にある`urls`をご自身のQiita, ZennなどのURLに変更してください。
 - その他の、プロパティについて

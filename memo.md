@@ -1,5 +1,5 @@
 ### プレースホルダーについて
-- README.mdファイルに追加
+- **README.md**ファイルに追加
 ```Markdown
 <!-- feeds:start -->
 <!-- feeds:end -->
