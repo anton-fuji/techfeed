@@ -10,7 +10,7 @@ git clone git@github.com:anton-fuji/techfeed.git
 ```
 
 ### Step.1 Feed設定
-- `config/feed-setup.yaml`にある`urls`をご自身のQiita, ZennなどのURLに変更してください。
+- `config/feeds-setup.yaml`にある`urls`をご自身のQiita, ZennなどのURLに変更してください。
 - その他の、プロパティについて
     - `limit`: 記事取得上限
     - `sorted`: 取得記事をソートするかどうか
@@ -49,3 +49,49 @@ git clone git@github.com:anton-fuji/techfeed.git
 * [![](./image/zenn.png) Dockerイメージ軽量化のアーキテクチャ設計を考える](https://zenn.dev/fuuji/articles/9eb7f2aefcd6c5)
 
 <!-- feeds:end -->
+
+
+## GitHub Actions WorkFlow
+```yaml
+name: Posts Updater
+
+ on:
+   schedule:
+     - cron: '0 0 * * *'
+
+jobs:
+  update-posts:
+    runs-on: ubuntu-latest
+
+    steps:
+      # リポジトリをチェックアウト
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Gitの設定
+      - name: Git setting
+        run: |
+          git config --local user.email "anton-fuji@users.noreply.github.com"
+          git config --local user.name "anton-fuji"
+
+      # Goのセットアップ
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24.2' # 必要に応じてGoのバージョンを変更
+
+      # 必要な依存関係のインストール（もしある場合）
+      - name: Install dependencies
+        run: go mod tidy
+
+      # Goプログラムを実行してREADME.mdを更新
+      - name: Run updater
+        run: go run main.go
+
+      # README.mdをコミットしてプッシュ
+      - name: Commit and push changes
+        run: |
+          git add README.md
+          git diff --quiet README.md || git commit -m "update posts!"
+          git push origin main
+```
