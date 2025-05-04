@@ -1,6 +1,27 @@
-# Tech Feed
-- 以下のプレースホルダーをご自身のREADME.mdに加えてください
+#  👽 Tech Feed
+## Usage
+### Step.1 Feed設定
+- `config/feed-setup.yaml`にある`urls`をご自身のQiita, ZennなどのURLに変更してください。
+- その他の、プロパティについて
+    - `limit`: 記事取得上限
+    - `sorted`: 取得記事をソートするかどうか
 
+```yaml
+- urls:
+    - https://qiita.com/your_name/feed.atom
+  template: templates/feeds.tmpl
+  limit: 5
+  sorted: true
+
+- urls:
+    - https://zenn.dev/your_name/feed
+  template: templates/feeds.tmpl
+  limit: 5
+  sorted: false
+```
+### Step.2 README.mdへ出力
+- プレースホルダーをご自身のREADME.mdに加えてください([*mdmo.md*](./memo.md)を参照)
+- 以下は、FujiのQiita, Zennを取得したものになります
 
 <!-- feeds:start -->
 
@@ -17,6 +38,5 @@
 * [![](./image/zenn.png) Dockerイメージの安全性を高める10のセキュリティハック](https://zenn.dev/fuuji/articles/3909c8d444eaa9)
 
 * [![](./image/zenn.png) Dockerイメージ軽量化のアーキテクチャ設計を考える](https://zenn.dev/fuuji/articles/9eb7f2aefcd6c5)
-
 
 <!-- feeds:end -->
