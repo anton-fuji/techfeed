@@ -1,11 +1,11 @@
-- url:
+- urls:
     - https://qiita.com/fujifuji1414/feed.atom
-  template: templates/qiita.tmpl
+  template: templates/feeds.tmpl
   limit: 4
-  sort_by_published: true
+  sorted: true
 
-- url:
+- urls:
     - https://zenn.dev/fuuji/feed
-  template: templates/zenn.tmpl
+  template: templates/feeds.tmpl
   limit: 7
-  sort_by_published: false
+  sorted: true
