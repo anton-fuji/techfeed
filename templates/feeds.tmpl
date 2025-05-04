@@ -1,5 +1,3 @@
 {{range .}}
-* {{- if eq .Source "qiita" -}}![](./image/qiita.png)
-  {{- else if eq .Source "zenn" -}}![](./image/zenn.png)
-  {{- end -}} [{{ .Title }}]({{ .Link }})
+* [![](./image/{{.Source}}.png) {{ .Title }}]({{ .Link }})
 {{end}}

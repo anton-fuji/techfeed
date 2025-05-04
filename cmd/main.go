@@ -12,19 +12,17 @@ import (
 )
 
 func main() {
-	groups, groupedItems, err := feed.LoadFeeds("config/feeds-setup.yaml")
+	_, groupedItems, err := feed.LoadFeeds("config/feeds-setup.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	var renderOutput bytes.Buffer
 
-	for _, group := range groups {
-		items := groupedItems[group.Template]
-
-		tmpl, err := template.ParseFiles(group.Template)
+	for _, items := range groupedItems {
+		tmpl, err := template.ParseFiles("templates/feeds.tmpl")
 		if err != nil {
-			log.Printf("テンプレートが読み込めません: %s (%v)", group.Template, err)
+			log.Printf("テンプレートが読み込めません: %v", err)
 			continue
 		}
 
@@ -40,12 +38,12 @@ func main() {
 	}
 	readme := string(readmeBytes)
 
-	re := regexp.MustCompile(`(?s)<!-- feeds:START -->.*?<!-- feeds:END -->`)
-	newContent := fmt.Sprintf("<!-- feeds:START -->\n%s<!-- feeds:END-->", renderOutput.String())
+	re := regexp.MustCompile(`(?s)<!-- feeds:start -->.*?<!-- feeds:end -->`)
+	newContent := fmt.Sprintf("<!-- feeds:start -->\n%s<!-- feeds:end -->", renderOutput.String())
 	updated := re.ReplaceAllString(readme, newContent)
 
 	if err := os.WriteFile("README.md", []byte(updated), 0664); err != nil {
 		log.Fatalf("README.md の書き込みに失敗: %v", err)
 	}
-	fmt.Println("✔ README.MDWO更新しました!")
+	fmt.Println("✔ README.mdを更新しました!")
 }

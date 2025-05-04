@@ -1,6 +1,7 @@
 package feed
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"sort"
@@ -40,7 +41,7 @@ func LoadFeeds(path string) ([]FeedGroup, map[string][]FeedItem, error) {
 	fp := gofeed.NewParser()
 	groupedItems := make(map[string][]FeedItem)
 
-	for _, group := range groups {
+	for i, group := range groups {
 		var items []FeedItem
 
 		for _, url := range group.URLs {
@@ -82,7 +83,8 @@ func LoadFeeds(path string) ([]FeedGroup, map[string][]FeedItem, error) {
 			items = items[:group.Limit]
 		}
 
-		groupedItems[group.Template] = items
+		key := fmt.Sprintf("%s-%d", group.Template, i)
+		groupedItems[key] = items
 	}
 
 	return groups, groupedItems, nil
