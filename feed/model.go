@@ -1,11 +1,12 @@
 package feed
 
 type Feeds struct {
-	Title string `yaml:""title`
-	Url   string `yaml: "url"`
-	Max   string `yaml: "url"`
+	Urls     []string `yaml:"urls"`
+	Template string   `yaml:"template"`
+	Limit    int      `yaml:"limit"`
+	Sorted   bool     `yaml:"sorted"`
 }
 
-type Config struct {
-	Feeds []FeedConfig `yaml:"feeds"`
-}
+// type Config struct {
+// 	Feeds []FeedConfig `yaml:"feeds"`
+// }

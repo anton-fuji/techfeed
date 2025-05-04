@@ -1,0 +1,3 @@
+{{range .}}
+* {{if eq .FeedLink "https://qiita.com/fujifuji1414/feed.atom"}}![](./image/qiita.png){{else if eq .FeedLink "https://zenn.dev/fuuji/feed"}}![](./image/zenn.png){{end}} [{{ .Title }}]({{ .Link }})
+{{end}}
