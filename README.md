@@ -1,4 +1,6 @@
 #  👽 Tech Feed
+![Go Version](https://img.shields.io/badge/Go-1.24.2-00ADD8?logo=go&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ## Usage
 ### Install
 ```bash
@@ -71,8 +73,8 @@ jobs:
       # Gitの設定
       - name: Git setting
         run: |
-          git config --local user.email "anton-fuji@users.noreply.github.com"
-          git config --local user.name "anton-fuji"
+          git config --local user.email "<your-user-name>@users.noreply.github.com"
+          git config --local user.name "<your-user-name>"
 
       # Goのセットアップ
       - name: Set up Go
@@ -80,7 +82,7 @@ jobs:
         with:
           go-version: '1.24.2' # 必要に応じてGoのバージョンを変更
 
-      # 必要な依存関係のインストール（もしある場合）
+      # 必要な依存関係のインストール
       - name: Install dependencies
         run: go mod tidy
 
@@ -88,7 +90,6 @@ jobs:
       - name: Run updater
         run: go run main.go
 
-      # README.mdをコミットしてプッシュ
       - name: Commit and push changes
         run: |
           git add README.md
