@@ -31,7 +31,7 @@ git clone git@github.com:anton-fuji/techfeed.git
   sorted: false
 ```
 ### Step.2 README.mdへ出力
-- プレースホルダーをご自身のREADME.mdに加えてください([*mdmo.md*](./memo.md)を参照)
+- プレースホルダーをご自身のREADME.mdに加えてください([*memo.md*](./memo.md)を参照)
 - 以下は、FujiのQiita, Zennを取得したものになります
 
 <!-- feeds:start -->
